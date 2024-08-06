@@ -31,7 +31,11 @@ const ProductDetailsCard = ({ productData }) => {
 
               <div className={styles.description}>
                 <span>
-                  <Link href="/login" className={styles.signInText}>
+                  <Link
+                    href="/login"
+                    style={{ color: "#555" }}
+                    className={styles.signInText}
+                  >
                     Sign in
                   </Link>{" "}
                   or Create an account to see pricing
