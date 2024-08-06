@@ -1,14 +1,16 @@
 "use client";
-import Image from "next/image";
 import { useState } from "react";
+import Image from "next/image";
+
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
-import styles from "./Footer.module.css";
 import {
   infoLinks,
   paymentMethods,
   quickLinks,
   socialLinks,
 } from "@/constants/constants";
+
+import styles from "./Footer.module.css";
 
 export default function Footer() {
   const [email, setEmail] = useState("");
