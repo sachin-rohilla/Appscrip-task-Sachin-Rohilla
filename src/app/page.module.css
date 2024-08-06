@@ -1,15 +1,3 @@
-@font-face {
-  font-family: "Simplon Norm";
-  src: url("/fonts/SimplonNorm-Regular.woff2") format("woff2"),
-    url("/fonts/SimplonNorm-Regular.woff") format("woff");
-  font-weight: normal;
-  font-style: normal;
-}
-
-.header {
-  font-family: "Simplon Norm", sans-serif;
-}
-
 .mainContainer {
   padding: 0 4rem;
   display: flex;
