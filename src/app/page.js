@@ -1,95 +1,118 @@
-import Image from "next/image";
+"use client";
+import { useState, useEffect } from "react";
+import Head from "next/head";
+
+import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
+
+import ProductFilterSidebar from "@/Components/ProductFilterSidebar";
+import ProductDetailsCard from "@/Components/ProductDetailsCard";
+
+import { sortOptions } from "@/constants/constants";
+import Loader from "@/Components/Loader";
+
 import styles from "./page.module.css";
 
 export default function Home() {
+  const [showFilters, setShowFilters] = useState(false);
+  const [products, setProducts] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const toggleFilters = () => {
+    setShowFilters((prevShowFilters) => !prevShowFilters);
+  };
+  const fetchProducts = async () => {
+    try {
+      setIsLoading(true);
+      const response = await fetch(
+        "https://fakestoreapi.com/products?limit=15"
+      );
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      const data = await response.json();
+      setProducts(data);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchProducts();
+  }, []);
+
+  if (isLoading) return <Loader />;
+
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>src/app/page.js</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
-
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
+    <>
+      <Head>
+        <title>ShopNow | Explore Our Latest Products</title>
+        <meta
+          name="description"
+          content="Browse our latest collection of products at ShopNow. Find the best deals, explore new arrivals, and shop your favorites from various categories."
         />
-      </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore starter templates for Next.js.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
+      </Head>
+      <section className={styles.mainContainer}>
+        <header className={styles.header}>
+          <h1>DISCOVER OUR PRODUCTS</h1>
           <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
+            Lorem ipsum dolor sit amet consectetur. Amet est posuere rhoncus
+            scelerisque. Dolor integer scelerisque nibh amet mi ut elementum
+            dolor.
           </p>
-        </a>
-      </div>
-    </main>
+        </header>
+        <div className={styles.controls}>
+          <div className={styles.filterToggle}>
+            <p className={styles.itemsCount}>{products?.length} ITEMS</p>
+            <button onClick={toggleFilters} className={styles.filterButton}>
+              {showFilters ? (
+                <>
+                  <IoIosArrowBack />
+                  HIDE FILTER
+                </>
+              ) : (
+                <>
+                  <IoIosArrowForward />
+                  SHOW FILTER
+                </>
+              )}
+            </button>
+          </div>
+          <div className={styles.filterSelectContainer}>
+            <button
+              onClick={toggleFilters}
+              className={styles.filterButtonMobile}
+            >
+              Filter
+            </button>
+            <select className={styles.sortSelect}>
+              {sortOptions.map((option) => (
+                <option key={option} value={option}>
+                  {option}
+                </option>
+              ))}
+            </select>
+          </div>
+        </div>
+        <div className={styles.mainContent}>
+          {showFilters && (
+            <>
+              <div className={styles.overlay} onClick={toggleFilters}></div>
+              <div
+                className={`${styles.filterSidebar} ${
+                  showFilters ? styles.sidebarOpen : ""
+                }`}
+              >
+                <ProductFilterSidebar handleClose={toggleFilters} />
+              </div>
+            </>
+          )}
+          <div className={styles.productContent}>
+            <ProductDetailsCard productData={products} />
+          </div>
+        </div>
+      </section>
+    </>
   );
 }

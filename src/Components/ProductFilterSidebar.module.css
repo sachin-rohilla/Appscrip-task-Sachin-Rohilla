@@ -1,0 +1,108 @@
+.sidebar {
+  width: 100%;
+  max-width: 300px;
+  padding: 1rem 0;
+  background-color: #fff;
+  box-sizing: border-box;
+}
+
+.checkboxSection {
+  margin-bottom: 1rem;
+}
+
+.customCheckboxLabel {
+  display: flex;
+  align-items: center;
+}
+
+.customCheckbox {
+  margin-right: 0.5rem;
+}
+
+.categorySection {
+  margin-bottom: 1rem;
+  border-bottom: 1px solid #ddd;
+}
+
+.categoryButton {
+  background-color: #fff;
+  color: black;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  border-radius: 4px;
+  width: 100%;
+  text-align: left;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.open {
+  background-color: #fff;
+}
+
+.arrow {
+  font-size: 1rem;
+  transition: transform 0.3s;
+}
+
+.dropdownMenu {
+  margin-top: 0.5rem;
+  background-color: #fff;
+  border: none;
+  padding: 0.5rem 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.dropdownLabel {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.checkbox {
+  margin-right: 0.5rem;
+}
+
+.unselectButton {
+  background-color: transparent;
+  border: none;
+  text-decoration: underline;
+  padding: 1rem 0;
+  color: #bfc8cd;
+  cursor: pointer;
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
+  text-align: start;
+}
+
+.closeIcon {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: 300px;
+    height: 100%;
+    width: 80%;
+    background-color: #fff;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    z-index: 2000;
+    padding: 1rem;
+    overflow-y: auto;
+  }
+  .closeIcon {
+    display: block;
+    position: absolute;
+    top: 1rem;
+    right: 0.8rem;
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+}

@@ -1,0 +1,166 @@
+.header {
+  width: 100%;
+  border-bottom: 1px solid #e5e5e5;
+  box-sizing: border-box;
+  padding: 1rem 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  background-color: #fff;
+}
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 4rem;
+  background-color: #fff;
+  box-sizing: border-box;
+}
+
+.leftSection {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.logoImage {
+  width: 100%;
+  max-width: 50px;
+  height: auto;
+}
+
+.logoText {
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  cursor: pointer;
+}
+
+.languageSelector {
+  background: none;
+  border: none;
+  outline: none;
+  font-size: 0.8rem;
+  color: black;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.languageSelector:focus {
+  outline: none;
+}
+
+.menuIcon {
+  display: none;
+}
+
+.desktopOnly {
+  display: block;
+}
+
+.links {
+  display: flex;
+  justify-content: center;
+  gap: 4rem;
+  margin-top: 3rem;
+}
+
+.link {
+  text-decoration: none;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: black;
+}
+
+.mobileMenu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 80%;
+  height: 100%;
+  background-color: #fff;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  color: black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 1000;
+  padding: 2rem;
+}
+
+.mobileMenu nav {
+  width: 100%;
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.closeIcon {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .nav {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1rem;
+  }
+
+  .leftSection {
+    display: flex;
+    align-items: center;
+  }
+
+  .logoText {
+    margin: 0.5rem 0;
+    text-align: center;
+    flex-grow: 1;
+    position: static;
+    transform: none;
+  }
+
+  .languageSelector,
+  .menuIcon {
+    display: block;
+  }
+
+  .actions {
+    justify-content: flex-end;
+    gap: 0.5rem;
+    width: auto;
+  }
+
+  .links {
+    display: none;
+  }
+
+  .desktopOnly {
+    display: none;
+  }
+  .logoImage {
+    width: 100%;
+    max-width: 20px;
+    height: auto;
+  }
+  .header {
+    padding: 1rem 0;
+  }
+}
